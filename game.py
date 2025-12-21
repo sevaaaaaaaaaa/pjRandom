@@ -15,26 +15,30 @@ class GuessNumberGame:
         """Проверка числа пользователя"""
         self.attempts += 1
         if guess < self.secret_number:
-            return TOO_LOW
+            return UNDER  
         elif guess > self.secret_number:
-            return TOO_HIGH
+            return OVER   
         else:
-            return WIN
+            return SUCCESS  
 
     def start(self):
         """Основной игровой цикл"""
         self.generate_number()
-        print(WELCOME)
+        print(INTRO)  
+
+        prompt_text = PROMPT.format(MIN_NUMBER=MIN_NUMBER, MAX_NUMBER=MAX_NUMBER)
 
         while self.attempts < MAX_ATTEMPTS:
             try:
-                user_input = int(input(INPUT_PROMPT))
+                user_input = int(input(prompt_text)) 
             except ValueError:
-                print(INVALID_INPUT)
+                print(ERROR) 
                 continue
 
             result = self.check_guess(user_input)
             print(result)
 
-            if result == WIN:
+            if result == SUCCESS: 
                 return
+        
+        print(FAILURE.format(number=self.secret_number))
