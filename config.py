@@ -1,5 +1,4 @@
-from messages import * 
-# Конфигурационные параметры
+
 MIN_NUMBER = 1
 MAX_NUMBER = 100
-MAX_ATTEMPTS = 7
+MAX_ATTEMPTS = 9
